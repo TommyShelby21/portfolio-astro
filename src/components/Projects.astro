@@ -1,0 +1,12 @@
+---
+import { projects } from "../data/projects";
+import ProjectCard from "./ProjectCard.astro";
+---
+
+<section id="projects">
+    <div class="container">
+        <h2>Vybrané projekty</h2>
+
+        {projects.map((project) => <ProjectCard {...project} />)}
+    </div>
+</section>

@@ -1,0 +1,78 @@
+---
+---
+
+<nav>
+	<div class="container nav-container">
+
+		<a href="/" class="logo">
+			Tomáš Osička
+		</a>
+
+
+		<div class="links">
+			<a href="#about">O mně</a>
+			<a href="#skills">Skills</a>
+			<a href="#projects">Projekty</a>
+			<a href="#contact">Kontakt</a>
+		</div>
+
+	</div>
+</nav>
+
+
+<style>
+nav {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 100;
+
+	background: rgba(15,23,42,0.7);
+	backdrop-filter: blur(12px);
+
+	border-bottom: 1px solid var(--border);
+}
+
+
+.nav-container {
+	height: 80px;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+
+.logo {
+	font-weight: 700;
+	font-size: 1.2rem;
+	color: var(--text);
+}
+
+
+.links {
+	display: flex;
+	gap: 30px;
+}
+
+
+.links a {
+	color: var(--text-secondary);
+	transition: .2s;
+}
+
+
+.links a:hover {
+	color: var(--primary);
+}
+
+
+@media(max-width:700px){
+
+	.links {
+		display:none;
+	}
+
+}
+
+</style>

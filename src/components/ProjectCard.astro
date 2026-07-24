@@ -1,0 +1,104 @@
+---
+interface Props {
+    title: string;
+    description: string;
+    image: string;
+    technologies: string[];
+    github: string;
+    demo: string;
+}
+
+const { title, description, image, technologies, github, demo } = Astro.props;
+---
+
+<div class="card project">
+    <img src={image} alt={title} />
+
+    <div>
+        <h3>
+            {title}
+        </h3>
+
+        <p>
+            {description}
+        </p>
+
+        <div class="tags">
+            {technologies.map((tech) => <span>{tech}</span>)}
+        </div>
+
+        <div class="links">
+            <a href={github} target="_blank"> GitHub </a>
+
+            <a href={demo}> Demo </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .project {
+        display: grid;
+
+        grid-template-columns: 300px 1fr;
+
+        gap: 30px;
+
+        margin-bottom: 30px;
+    }
+
+    img {
+        width: 100%;
+
+        height: 200px;
+
+        object-fit: cover;
+
+        border-radius: 12px;
+
+        background: #020617;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+
+        margin-bottom: 10px;
+    }
+
+    .tags {
+        display: flex;
+
+        flex-wrap: wrap;
+
+        gap: 8px;
+
+        margin: 20px 0;
+    }
+
+    .tags span {
+        padding: 6px 12px;
+
+        border-radius: 999px;
+
+        border: 1px solid var(--border);
+
+        font-size: 0.85rem;
+
+        color: var(--text-secondary);
+    }
+
+    .links {
+        display: flex;
+
+        gap: 20px;
+    }
+
+    .links a {
+        color: var(--primary);
+    }
+
+    @media (max-width: 700px) {
+        .project {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

@@ -1,23 +1,72 @@
+---
+import "../styles/global.css";
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = "Tomáš Osička | Full Stack Developer",
+	description = "Full Stack Developer zaměřený na Vue, Django, Docker a moderní webové aplikace.",
+} = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="cs">
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="UTF-8" />
+
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+
+		<title>{title}</title>
+
+		<meta name="description" content={description} />
+
+		<meta name="author" content="Tomáš Osička" />
+
+		<meta property="og:title" content={title} />
+
+		<meta property="og:description" content={description} />
+
+		<meta property="og:type" content="website" />
+
+		<link rel="icon" href="/favicon.svg" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/aos@2.3.4/dist/aos.css"
+		/>
 	</head>
+
 	<body>
 		<slot />
+		<script>
+			import("aos").then((AOS) => {
+				console.log("AOS loaded");
+
+				AOS.default.init({
+					duration: 800,
+					once: true,
+					offset: 100,
+				});
+			});
+		</script>
+		<script>
+			// Smooth scrolling
+			document.documentElement.style.scrollBehavior = "smooth";
+		</script>
 	</body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+<style is:global>
+	@import "../styles/global.css";
 </style>
