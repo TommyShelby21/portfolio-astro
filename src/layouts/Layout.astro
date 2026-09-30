@@ -1,4 +1,5 @@
 ---
+import "aos/dist/aos.css";
 import "../styles/global.css";
 
 interface Props {
@@ -41,32 +42,47 @@ const {
 			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
 			rel="stylesheet"
 		/>
-		<link
-			rel="stylesheet"
-			href="https://unpkg.com/aos@2.3.4/dist/aos.css"
-		/>
 	</head>
 
 	<body>
-		<slot />
-		<script>
-			import("aos").then((AOS) => {
-				console.log("AOS loaded");
+		<div class="scroll-progress" aria-hidden="true"></div>
 
-				AOS.default.init({
-					duration: 800,
-					once: true,
-					offset: 100,
-				});
-			});
-		</script>
+		<div class="bg-blobs" aria-hidden="true">
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+		<slot />
+
 		<script>
-			// Smooth scrolling
-			document.documentElement.style.scrollBehavior = "smooth";
+			import AOS from "aos";
+
+			const reduceMotion = window.matchMedia(
+				"(prefers-reduced-motion: reduce)",
+			).matches;
+
+			AOS.init({
+				duration: 800,
+				easing: "ease-out-cubic",
+				once: true,
+				offset: 80,
+				disable: reduceMotion,
+			});
+
+			// Scroll progress bar
+			const progress = document.querySelector<HTMLElement>(".scroll-progress");
+
+			const updateProgress = () => {
+				const max =
+					document.documentElement.scrollHeight - window.innerHeight;
+				const ratio = max > 0 ? window.scrollY / max : 0;
+				progress?.style.setProperty("--progress", String(ratio));
+			};
+
+			window.addEventListener("scroll", updateProgress, { passive: true });
+			window.addEventListener("resize", updateProgress);
+			updateProgress();
 		</script>
 	</body>
 </html>
-
-<style is:global>
-	@import "../styles/global.css";
-</style>

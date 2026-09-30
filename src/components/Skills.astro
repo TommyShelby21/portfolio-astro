@@ -7,7 +7,7 @@ import { skills } from "../data/skills";
 
 	<div class="container">
 
-		<h2>
+		<h2 class="section-title" data-aos="fade-up">
 			Technologie
 		</h2>
 
@@ -15,9 +15,13 @@ import { skills } from "../data/skills";
 		<div class="grid">
 
 			{
-				skills.map(group => (
+				skills.map((group, i) => (
 
-					<div class="card">
+					<div
+						class="card"
+						data-aos="fade-up"
+						data-aos-delay={i * 100}
+					>
 
 						<h3>
 							{group.category}
@@ -100,6 +104,21 @@ h3 {
 	color:var(--text-secondary);
 
 	border:1px solid var(--border);
+
+	transition:.25s;
+
+}
+
+
+.tags span:hover {
+
+	color:var(--text);
+
+	border-color:var(--primary);
+
+	background:rgba(56,189,248,.2);
+
+	transform:translateY(-2px);
 
 }
 

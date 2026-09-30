@@ -5,8 +5,8 @@ import ProjectCard from "./ProjectCard.astro";
 
 <section id="projects">
     <div class="container">
-        <h2>Vybrané projekty</h2>
+        <h2 class="section-title" data-aos="fade-up">Vybrané projekty</h2>
 
-        {projects.map((project) => <ProjectCard {...project} />)}
+        {projects.map((project, i) => <ProjectCard {...project} index={i} />)}
     </div>
 </section>
