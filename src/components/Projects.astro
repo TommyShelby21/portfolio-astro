@@ -1,12 +1,23 @@
 ---
+import { getLang, useTranslations } from "../i18n/ui";
 import { projects } from "../data/projects";
 import ProjectCard from "./ProjectCard.astro";
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
 ---
 
 <section id="projects">
     <div class="container">
-        <h2 class="section-title" data-aos="fade-up">Vybrané projekty</h2>
+        <h2 class="section-title" data-aos="fade-up">{t("projects.title")}</h2>
 
-        {projects.map((project, i) => <ProjectCard {...project} index={i} />)}
+        {projects.map((project, i) => (
+            <ProjectCard
+                {...project}
+                title={project.title[lang]}
+                description={project.description[lang]}
+                index={i}
+            />
+        ))}
     </div>
 </section>

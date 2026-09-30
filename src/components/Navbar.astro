@@ -1,19 +1,38 @@
 ---
+import { getLang, homePath, useTranslations } from "../i18n/ui";
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+
+const otherLang = lang === "cs" ? "en" : "cs";
 ---
 
 <nav id="navbar">
 	<div class="container nav-container">
 
-		<a href="/" class="logo">
+		<a href={homePath(lang)} class="logo">
 			Tomáš <span class="gradient-text">Osička</span>
 		</a>
 
 
-		<div class="links">
-			<a href="#about">O mně</a>
-			<a href="#skills">Skills</a>
-			<a href="#projects">Projekty</a>
-			<a href="#contact">Kontakt</a>
+		<div class="right">
+			<div class="links">
+				<a href="#about">{t("nav.about")}</a>
+				<a href="#skills">{t("nav.skills")}</a>
+				<a href="#projects">{t("nav.projects")}</a>
+				<a href="#contact">{t("nav.contact")}</a>
+			</div>
+
+			<a
+				href={homePath(otherLang)}
+				class="lang-switch"
+				hreflang={otherLang}
+				aria-label={t("nav.switch")}
+				title={t("nav.switch")}
+			>
+				<span class:list={{ current: lang === "cs" }}>CS</span>
+				<span class:list={{ current: lang === "en" }}>EN</span>
+			</a>
 		</div>
 
 	</div>
@@ -52,6 +71,20 @@
 	document
 		.querySelectorAll("section[id]")
 		.forEach((section) => observer.observe(section));
+
+	// Keep the current section when switching language
+	document
+		.querySelector<HTMLAnchorElement>(".lang-switch")
+		?.addEventListener("click", (event) => {
+			const active = document.querySelector(".links a.active");
+			const hash = active?.getAttribute("href");
+
+			if (!hash) return;
+
+			event.preventDefault();
+			window.location.href =
+				(event.currentTarget as HTMLAnchorElement).pathname + hash;
+		});
 </script>
 
 
@@ -103,9 +136,60 @@ nav.scrolled .nav-container {
 }
 
 
+.right {
+	display: flex;
+	align-items: center;
+	gap: 30px;
+}
+
+
 .links {
 	display: flex;
 	gap: 30px;
+}
+
+
+.lang-switch {
+	position: relative;
+
+	display: flex;
+
+	padding: 3px;
+
+	border: 1px solid var(--border);
+	border-radius: 999px;
+
+	font-size: .8rem;
+	font-weight: 600;
+
+	transition: border-color .25s;
+}
+
+
+.lang-switch:hover {
+	border-color: var(--primary);
+}
+
+
+.lang-switch span {
+	padding: 4px 10px;
+
+	border-radius: 999px;
+
+	color: var(--text-secondary);
+
+	transition: background .25s, color .25s;
+}
+
+
+.lang-switch span.current {
+	background: var(--gradient);
+	color: #020617;
+}
+
+
+.lang-switch:hover span:not(.current) {
+	color: var(--text);
 }
 
 

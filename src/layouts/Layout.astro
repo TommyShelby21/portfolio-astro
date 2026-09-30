@@ -1,20 +1,30 @@
 ---
 import "aos/dist/aos.css";
 import "../styles/global.css";
+import {
+	getLang,
+	homePath,
+	languages,
+	useTranslations,
+	type Lang,
+} from "../i18n/ui";
 
 interface Props {
 	title?: string;
 	description?: string;
 }
 
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+
 const {
-	title = "Tomáš Osička | Full Stack Developer",
-	description = "Full Stack Developer zaměřený na Vue, Django, Docker a moderní webové aplikace.",
+	title = t("meta.title"),
+	description = t("meta.description"),
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="cs">
+<html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
 
@@ -31,6 +41,18 @@ const {
 		<meta property="og:description" content={description} />
 
 		<meta property="og:type" content="website" />
+
+		<meta property="og:locale" content={lang === "cs" ? "cs_CZ" : "en_US"} />
+
+		{
+			(Object.keys(languages) as Lang[]).map((code) => (
+				<link
+					rel="alternate"
+					hreflang={code}
+					href={new URL(homePath(code), Astro.url)}
+				/>
+			))
+		}
 
 		<link rel="icon" href="/favicon.svg" />
 

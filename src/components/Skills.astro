@@ -1,5 +1,9 @@
 ---
+import { getLang, useTranslations } from "../i18n/ui";
 import { skills } from "../data/skills";
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
 ---
 
 
@@ -8,7 +12,7 @@ import { skills } from "../data/skills";
 	<div class="container">
 
 		<h2 class="section-title" data-aos="fade-up">
-			Technologie
+			{t("skills.title")}
 		</h2>
 
 
@@ -24,7 +28,7 @@ import { skills } from "../data/skills";
 					>
 
 						<h3>
-							{group.category}
+							{group.category[lang]}
 						</h3>
 
 

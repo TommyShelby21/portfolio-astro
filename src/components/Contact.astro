@@ -1,17 +1,23 @@
+---
+import { getLang, useTranslations } from "../i18n/ui";
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+---
+
 <section id="contact">
 
 	<div class="container">
 
 		<h2 class="section-title" data-aos="fade-up">
-			Kontakt
+			{t("contact.title")}
 		</h2>
 
 
 		<div class="card contact-card" data-aos="zoom-in-up" data-aos-delay="150">
 
 			<p>
-				Máš zajímavý projekt nebo nabídku spolupráce?
-				Napiš mi.
+				{t("contact.text")}
 			</p>
 
 

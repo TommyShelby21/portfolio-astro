@@ -1,13 +1,32 @@
-export const projects = [
+import type { Localized } from "../i18n/ui";
+
+interface Project {
+	title: Localized;
+	description: Localized;
+	longDescription: Localized;
+	image: string;
+	technologies: string[];
+	github: string;
+	demo: string;
+}
+
+export const projects: Project[] = [
 
 	{
-		title: "TaskHub",
+		title: {
+			cs: "TaskHub",
+			en: "TaskHub",
+		},
 
-		description:
-			"Full-stack aplikace pro správu firemních procesů, uživatelů a dat.",
+		description: {
+			cs: "Full-stack aplikace pro správu firemních procesů, uživatelů a dat.",
+			en: "Full-stack application for managing company processes, users and data.",
+		},
 
-		longDescription:
-			"Projekt řeší návrh REST API, autentizaci, práci s databází, role uživatelů a kompletní deployment pomocí Dockeru.",
+		longDescription: {
+			cs: "Projekt řeší návrh REST API, autentizaci, práci s databází, role uživatelů a kompletní deployment pomocí Dockeru.",
+			en: "The project covers REST API design, authentication, database work, user roles and a complete Docker deployment.",
+		},
 
 		image: "/projects/taskhub.png",
 
@@ -30,13 +49,20 @@ export const projects = [
 
 
 	{
-		title: "JavaScript aplikace",
+		title: {
+			cs: "JavaScript aplikace",
+			en: "JavaScript application",
+		},
 
-		description:
-			"Interaktivní aplikace vytvořená pro rozšíření frontend zkušeností.",
+		description: {
+			cs: "Interaktivní aplikace vytvořená pro rozšíření frontend zkušeností.",
+			en: "Interactive application built to broaden my frontend experience.",
+		},
 
-		longDescription:
-			"Projekt zaměřený na JavaScript, práci s API a moderní frontend postupy.",
+		longDescription: {
+			cs: "Projekt zaměřený na JavaScript, práci s API a moderní frontend postupy.",
+			en: "A project focused on JavaScript, working with APIs and modern frontend practices.",
+		},
 
 		image: "/projects/javascript.png",
 
@@ -54,13 +80,20 @@ export const projects = [
 
 
 	{
-		title: "Python aplikace",
+		title: {
+			cs: "Python aplikace",
+			en: "Python application",
+		},
 
-		description:
-			"Aplikace zaměřená na backend logiku a práci s Pythonem.",
+		description: {
+			cs: "Aplikace zaměřená na backend logiku a práci s Pythonem.",
+			en: "Application focused on backend logic and working with Python.",
+		},
 
-		longDescription:
-			"Projekt pro demonstraci Python znalostí, struktury aplikace a čistého kódu.",
+		longDescription: {
+			cs: "Projekt pro demonstraci Python znalostí, struktury aplikace a čistého kódu.",
+			en: "A project demonstrating Python skills, application structure and clean code.",
+		},
 
 		image: "/projects/python.png",
 

@@ -1,7 +1,14 @@
-export const skills = [
+import type { Localized } from "../i18n/ui";
+
+interface SkillGroup {
+	category: Localized;
+	items: string[];
+}
+
+export const skills: SkillGroup[] = [
 
 	{
-		category: "Frontend",
+		category: { cs: "Frontend", en: "Frontend" },
 		items: [
 			"HTML",
 			"CSS",
@@ -13,7 +20,7 @@ export const skills = [
 	},
 
 	{
-		category: "Backend",
+		category: { cs: "Backend", en: "Backend" },
 		items: [
 			"Python",
 			"Django",
@@ -23,7 +30,7 @@ export const skills = [
 	},
 
 	{
-		category: "Databáze",
+		category: { cs: "Databáze", en: "Databases" },
 		items: [
 			"PostgreSQL",
 			"SQLite"
@@ -31,7 +38,7 @@ export const skills = [
 	},
 
 	{
-		category: "DevOps",
+		category: { cs: "DevOps", en: "DevOps" },
 		items: [
 			"Docker",
 			"Nginx",

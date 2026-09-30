@@ -1,10 +1,16 @@
+---
+import { getLang, useTranslations } from "../i18n/ui";
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+---
+
 <footer>
 
 	<div class="container">
 
 		<p>
 			© {new Date().getFullYear()} Tomáš Osička.
-			Vytvořeno pomocí Astro.
 		</p>
 
 

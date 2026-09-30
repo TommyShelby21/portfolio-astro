@@ -1,21 +1,25 @@
 ---
+import { getLang, useTranslations } from "../i18n/ui";
 import { Image } from "astro:assets";
 import builder from "../assets/hero-builder.png";
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
 ---
 
 <section class="hero">
     <div class="container hero-grid">
         <div class="hero-text">
-            <p class="hello reveal" style="--i: 0">Ahoj, jsem</p>
+            <p class="hello reveal" style="--i: 0">{t("hero.hello")}</p>
 
             <h1 class="reveal" style="--i: 1">
                 <span class="gradient-text">Tomáš Osička</span>
             </h1>
 
-            <h2 class="reveal" style="--i: 2">Full Stack Developer</h2>
+            <h2 class="reveal" style="--i: 2">{t("hero.role")}</h2>
 
             <p class="description reveal" style="--i: 3">
-                Rád stavím moderní webové aplikace pomocí Vue a Django.
+                {t("hero.description")}
             </p>
 
             <div class="buttons reveal" style="--i: 4">
@@ -27,14 +31,14 @@ import builder from "../assets/hero-builder.png";
                     GitHub
                 </a>
 
-                <a class="outline" href="#contact"> Kontakt </a>
+                <a class="outline" href="#contact">{t("hero.contact")}</a>
             </div>
         </div>
 
         <div class="hero-visual" aria-hidden="true">
             <div class="glow"></div>
 
-            <div class="bubble">Stavím ti web… 🧱</div>
+            <div class="bubble">{t("hero.bubble")}</div>
 
             <Image
                 src={builder}
@@ -46,7 +50,7 @@ import builder from "../assets/hero-builder.png";
         </div>
     </div>
 
-    <a href="#about" class="scroll-indicator" aria-label="Posunout dolů">
+    <a href="#about" class="scroll-indicator" aria-label={t("hero.scroll")}>
         <span></span>
     </a>
 </section>
